@@ -18,6 +18,8 @@
 
 
 extern char board[BOARD_SIZE][BOARD_SIZE];
+extern int has_moved[8][8];
+
 
 typedef struct  s_piece
 {
@@ -30,8 +32,11 @@ void    print_board(void);
 void    parse_input(char *input, int *row_1, int *col_1, int *row_2, int *col_2);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void    swap(int *row_1, int *col_1, int *row_2, int *col_2);
+void    capturing(int *row_1, int *col_1, int *row_2, int *col_2);
 void    print_invalid_move(void);
+int     is_valid_move(int row_1, int col_1, int row_2, int col_2);
+void    swap_castle(int *row_1, int *col_1, int *row_2, int *col_2);
+int     is_checkmate(int king_row, int king_col);
 
 // pieces
 void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
@@ -39,6 +44,7 @@ void    is_rook_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_knight_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_bishop_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_queen_move(int *row_1, int *col_1, int *row_2, int *col_2);
+void    is_king_move(int *row_1, int *col_1, int *row_2, int *col_2);
 
 int     is_valid_rook_move(int row_1, int col_1, int row_2, int col_2);
 int     is_clear_path_horizontally(int row, int col_1, int col_2);

@@ -43,7 +43,7 @@ void    is_bishop_move(int *row_1, int *col_1, int *row_2, int *col_2)
         return ;
     }
     if (is_valid_bishop_move(*row_1, *col_1, *row_2, *col_2))
-        swap(row_1, col_1, row_2, col_2);
+        capturing(row_1, col_1, row_2, col_2);
     else
         printf(RED"Invalid move\n"RESET);
 }

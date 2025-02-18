@@ -1,9 +1,27 @@
 #include "../include/chess.h"
 
-void swap(int *row_1, int *col_1, int *row_2, int *col_2)
+int has_moved[8][8] = {0}; // 0 = not moved, 1 = moved
+
+void swap_castle(int *row_1, int *col_1, int *row_2, int *col_2)
+{
+    char    temp;
+    char    target = board[*row_2][*col_2];
+    char    piece = board[*row_1][*col_1];
+
+    temp = board[*row_1][*col_1];
+    board[*row_1][*col_1] = board[*row_2][*col_2];
+    board[*row_2][*col_2] = temp;
+    
+    has_moved[*row_2][*col_2] = 1;
+}
+
+
+void capturing(int *row_1, int *col_1, int *row_2, int *col_2)
 {
     board[*row_2][*col_2] = board[*row_1][*col_1];
     board[*row_1][*col_1] = ' ';
+    
+    has_moved[*row_2][*col_2] = 1;
 }
 
 void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
@@ -20,6 +38,8 @@ void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
         is_bishop_move(row_1, col_1, row_2, col_2);
     else if (piece == 'q' || piece == 'Q')
         is_queen_move(row_1, col_1, row_2, col_2);
+    else if (piece == 'k' || piece == 'K')
+        is_king_move(row_1, col_1, row_2, col_2);
     else
         print_invalid_move();
 }
