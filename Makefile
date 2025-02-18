@@ -4,18 +4,17 @@ CFLAGS  = -g
 HEADERS = -I./include
 OBJDIR  = obj
 
-# Find all C source files in src/
-SRCS    = $(wildcard src/*.c)
-OBJS    = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRCS))
+# Include chess_piece directory
+SRCS    = $(wildcard src/*.c chess_piece/*.c)
 
-# Header files to track dependencies
+OBJS    = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
+
 HEADER_FILES = include/chess.h
 
 # Colors for output
 RED     = \033[0;31m
 GREEN   = \033[0;32m
 YELLOW  = \033[0;33m
-BLUE    = \033[0;34m
 CYAN    = \033[0;36m
 RESET   = \033[0m
 
@@ -30,9 +29,9 @@ $(NAME): $(OBJS)
 		echo "$(RED)Error: $(NAME) was not created!$(RESET)"; \
 	fi
 
-# Compile .c files to .o in obj/ directory
-$(OBJDIR)/%.o: src/%.c $(HEADER_FILES)
-	@mkdir -p $(OBJDIR)
+# Compile .c files to .o in obj/ directory while maintaining directory structure
+$(OBJDIR)/%.o: %.c $(HEADER_FILES)
+	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling: $(notdir $<)$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS) || (echo "$(RED)Compilation failed for $(notdir $<)!$(RESET)" && exit 1)
 

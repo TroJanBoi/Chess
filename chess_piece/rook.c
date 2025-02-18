@@ -1,10 +1,5 @@
 #include "../include/chess.h"
 
-void print_invalid_move()
-{
-    printf(RED"Invalid move\n"RESET);
-}
-
 int is_valid_rook_move(int row_1, int col_1, int row_2, int col_2)
 {
     return (row_1 == row_2 || col_1 == col_2);

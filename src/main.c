@@ -18,9 +18,10 @@ void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
         is_knight_move(row_1, col_1, row_2, col_2);
     else if (piece == 'b' || piece == 'B')
         is_bishop_move(row_1, col_1, row_2, col_2);
+    else if (piece == 'q' || piece == 'Q')
+        is_queen_move(row_1, col_1, row_2, col_2);
     else
-        printf(RED"Invalid move\n"RESET);
-    return ;
+        print_invalid_move();
 }
 
 int is_valid_move(int row_1, int col_1, int row_2, int col_2)
