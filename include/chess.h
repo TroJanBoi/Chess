@@ -25,7 +25,10 @@ void    print_board(void);
 void    parse_input(char *input, int *row_1, int *col_1, int *row_2, int *col_2);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    swap(int *row_1, int *col_1, int *row_2, int *col_2);
+
+// pieces
+void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
+void    is_rook_move(int *row_1, int *col_1, int *row_2, int *col_2);
 
 #endif
