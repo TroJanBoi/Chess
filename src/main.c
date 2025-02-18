@@ -16,6 +16,8 @@ void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
         is_rook_move(row_1, col_1, row_2, col_2);
     else if (piece == 'n' || piece == 'N')
         is_knight_move(row_1, col_1, row_2, col_2);
+    else if (piece == 'b' || piece == 'B')
+        is_bishop_move(row_1, col_1, row_2, col_2);
     else
         printf(RED"Invalid move\n"RESET);
     return ;

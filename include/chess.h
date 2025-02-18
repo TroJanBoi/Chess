@@ -18,8 +18,13 @@
 
 
 extern char board[BOARD_SIZE][BOARD_SIZE];
-extern int  player_1;
-extern int  player_2;
+
+typedef struct  s_piece
+{
+    char    piece;
+    int     row;
+    int     col;
+}               t_piece;
 
 void    print_board(void);
 void    parse_input(char *input, int *row_1, int *col_1, int *row_2, int *col_2);
@@ -31,4 +36,6 @@ void    swap(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_rook_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_knight_move(int *row_1, int *col_1, int *row_2, int *col_2);
+void    is_bishop_move(int *row_1, int *col_1, int *row_2, int *col_2);
+
 #endif
