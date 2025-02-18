@@ -1,6 +1,33 @@
 #include "../include/chess.h"
 
-void    is_knight_move(int *row_1, int *col_1, int *row_2, int *col_2)
+int is_valid_knight_move(int row_1, int col_1, int row_2, int col_2)
 {
-    
+    int row_diff = abs(row_1 - row_2);
+    int col_diff = abs(col_1 - col_2);
+    return (row_diff == 2 && col_diff == 1) || (row_diff == 1 && col_diff == 2);
+}
+
+int is_valid_knight_capture(char piece, char target)
+{
+    if (piece == 'n')
+        return (target >= 'A' && target <= 'Z') || target == ' ';
+    if (piece == 'N')
+        return (target >= 'a' && target <= 'z') || target == ' ';
+    return 0;
+}
+
+void is_knight_move(int *row_1, int *col_1, int *row_2, int *col_2)
+{
+    char piece = board[*row_1][*col_1];
+    char target = board[*row_2][*col_2];
+
+    if (!is_valid_knight_capture(piece, target))
+    {
+        printf(RED"Invalid move\n"RESET);
+        return;
+    }
+    if (is_valid_knight_move(*row_1, *col_1, *row_2, *col_2))
+        swap(row_1, col_1, row_2, col_2);
+    else
+        printf(RED"Invalid move\n"RESET);
 }

@@ -30,5 +30,5 @@ void    swap(int *row_1, int *col_1, int *row_2, int *col_2);
 // pieces
 void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
 void    is_rook_move(int *row_1, int *col_1, int *row_2, int *col_2);
-
+void    is_knight_move(int *row_1, int *col_1, int *row_2, int *col_2);
 #endif
