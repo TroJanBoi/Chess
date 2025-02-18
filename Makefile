@@ -1,16 +1,17 @@
 NAME    = chess
-CC      = gcc
+CC      = cc
 CFLAGS  = -g
-HEADERS = -I./includes
+HEADERS = -I./include
 OBJDIR  = obj
 
-SRCS    = $(wildcard *.c)
-OBJS    = $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
+# Find all C source files in src/
+SRCS    = $(wildcard src/*.c)
+OBJS    = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRCS))
 
-# ไฟล์ header ที่ต้อง include
+# Header files to track dependencies
 HEADER_FILES = include/chess.h
 
-# สีสำหรับแสดงผล
+# Colors for output
 RED     = \033[0;31m
 GREEN   = \033[0;32m
 YELLOW  = \033[0;33m
@@ -25,13 +26,12 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(HEADERS) -o $(NAME) || (echo "$(RED)Linking failed!$(RESET)" && exit 1)
 	@if [ -f $(NAME) ]; then \
 		echo "$(GREEN)Executable $(NAME) created!$(RESET)"; \
-		echo "$(BLUE)Running $(NAME)...$(RESET)"; \
 	else \
 		echo "$(RED)Error: $(NAME) was not created!$(RESET)"; \
 	fi
 
-# คอมไพล์ไฟล์ .c เป็น .o และเช็คเฮดเดอร์
-$(OBJDIR)/%.o: %.c $(HEADER_FILES)
+# Compile .c files to .o in obj/ directory
+$(OBJDIR)/%.o: src/%.c $(HEADER_FILES)
 	@mkdir -p $(OBJDIR)
 	@echo "$(YELLOW)Compiling: $(notdir $<)$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS) || (echo "$(RED)Compilation failed for $(notdir $<)!$(RESET)" && exit 1)

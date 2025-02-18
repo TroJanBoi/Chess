@@ -1,4 +1,4 @@
-#include "include/chess.h"
+#include "../include/chess.h"
 
 void print_invalid_move()
 {

@@ -1,4 +1,4 @@
-#include "include/chess.h"
+#include "../include/chess.h"
 
 void swap(int *row_1, int *col_1, int *row_2, int *col_2)
 {
@@ -13,7 +13,7 @@ void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
     if (piece == 'p' || piece == 'P')
         is_pawn_move(row_1, col_1, row_2, col_2);
     else if (piece == 'r' || piece == 'R')
-        check_rook_move(row_1, col_1, row_2, col_2);
+        is_rook_move(row_1, col_1, row_2, col_2);
     else
         printf(RED"Invalid move\n"RESET);
     return ;

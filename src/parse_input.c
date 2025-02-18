@@ -1,4 +1,4 @@
-#include "include/chess.h"
+#include "../include/chess.h"
 
 void    parse_input(char *input, int *row_1, int *col_1, int *row_2, int *col_2)
 {

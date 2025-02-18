@@ -1,4 +1,4 @@
-#include "include/chess.h"
+#include "../include/chess.h"
 
 char board[BOARD_SIZE][BOARD_SIZE] = {
     {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'},

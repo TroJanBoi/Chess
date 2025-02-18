@@ -1,4 +1,4 @@
-#include "include/chess.h"
+#include "../include/chess.h"
 
 static size_t	count_words(char const *s, char c)
 {
