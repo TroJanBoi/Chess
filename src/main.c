@@ -54,6 +54,9 @@ int is_valid_move(int row_1, int col_1, int row_2, int col_2)
     return (SUCCESS);
 }
 
+
+
+
 int main(void)
 {
     char    input[10];
