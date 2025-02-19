@@ -38,14 +38,13 @@ int     can_castle(int *row_1, int *col_1, int *row_2, int *col_2)
     return FAILURE;
 }
 
-void    perform_castling(int *row_1, int *col_1, int *row_2, int *col_2)
-{
-    if (*col_2 == 7)
+void perform_castling(int *row_1, int *col_1, int *row_2, int *col_2) {
+
+    printf(GREEN "king: %c\n" RESET, board[*row_1][*col_1]);
+    if (*col_2 == 7 || *col_2 == 0) {
         swap_castle(row_1, col_1, row_2, col_2);
-    else if (*col_2 == 0)
-        swap_castle(row_1, col_1, row_2, col_2);
-    
-    has_moved[*row_2][*col_2] = 1;
+    }
+    has_moved[*row_1][*col_1] = 1;
     has_moved[*row_2][(*col_2 == 7 ? 5 : 3)] = 1;
 }
 
