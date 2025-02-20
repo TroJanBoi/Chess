@@ -60,7 +60,6 @@ void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2)
 
     if (is_valid_pawn_move(*row_1, *col_1, *row_2, *col_2, piece, target))
     {
-        printf("Valid move\n");
         capturing(row_1, col_1, row_2, col_2);
         if (*row_2 == 0 || *row_2 == 7)
             is_promotion_pawn(*row_2, *col_2);

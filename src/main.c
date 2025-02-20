@@ -2,19 +2,6 @@
 
 int has_moved[8][8] = {0}; // 0 = not moved, 1 = moved
 
-void swap_castle(int *king_row, int *king_col, int *rook_row, int *rook_col) {
-    int new_king_col = (*rook_col == 7) ? 6 : 2;
-    int new_rook_col = (*rook_col == 7) ? 5 : 3;
-
-    board[*king_row][new_king_col] = board[*king_row][*king_col];
-    board[*king_row][*king_col] = ' ';
-    board[*rook_row][new_rook_col] = board[*rook_row][*rook_col];
-    board[*rook_row][*rook_col] = ' ';
-    *king_col = new_king_col;
-    *rook_col = new_rook_col;
-}
-
-
 void capturing(int *row_1, int *col_1, int *row_2, int *col_2)
 {
     board[*row_2][*col_2] = board[*row_1][*col_1];
@@ -43,20 +30,6 @@ void check_piece(int *row_1, int *col_1, int *row_2, int *col_2)
         print_invalid_move();
 }
 
-int is_valid_move(int row_1, int col_1, int row_2, int col_2)
-{
-    if (row_1 < 0 || row_1 >= BOARD_SIZE || col_1 < 0 || col_1 >= BOARD_SIZE)
-        return (FAILURE);
-    else if (row_2 < 0 || row_2 >= BOARD_SIZE || col_2 < 0 || col_2 >= BOARD_SIZE)
-        return (FAILURE);
-    else if (row_1 == row_2 && col_1 == col_2)
-        return (FAILURE);
-    return (SUCCESS);
-}
-
-
-
-
 int main(void)
 {
     char    input[10];
@@ -65,15 +38,41 @@ int main(void)
 
     while (1)
     {
+        char    king_status = find_king();
+        if (king_status == 'k')
+        {
+            printf("White wins\n");
+            break;
+        }
+        else if (king_status == 'K')
+        {
+            printf("Black wins\n");
+            break;
+        }
         print_board();
         printf("Enter move: ");
         fgets(input, sizeof(input), stdin);
-        if (strncmp(input, "exit\n", 4) == 0)
+        if (strncmp(input, "exit\n", 5) == 0)
             break;
-        parse_input(input, &row_1, &col_1, &row_2, &col_2);
-        if (is_valid_move(row_1, col_1, row_2, col_2) == SUCCESS)
-            check_piece(&row_1, &col_1, &row_2, &col_2);
+        if (find_king() == 'k')
+        {
+            printf("White wins\n");
+            break;
+        }
+        else if (find_king() == 'K')
+        {
+            printf("Black wins\n");
+            break;
+        }
+        if (strlen(input) == 6)
+        {
+            parse_input(input, &row_1, &col_1, &row_2, &col_2);
+            if (is_valid_move(row_1, col_1, row_2, col_2) == SUCCESS)
+                check_piece(&row_1, &col_1, &row_2, &col_2);
+            else
+                printf(RED"Invalid move\n"RESET);
+        }
         else
-            printf(RED"Invalid move\n"RESET);
+            printf(RED"Invalid Move\n"RESET);
     }
 }

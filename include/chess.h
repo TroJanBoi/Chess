@@ -35,8 +35,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void    capturing(int *row_1, int *col_1, int *row_2, int *col_2);
 void    print_invalid_move(void);
 int     is_valid_move(int row_1, int col_1, int row_2, int col_2);
-void    swap_castle(int *row_1, int *col_1, int *row_2, int *col_2);
-int     is_checkmate(int king_row, int king_col);
+int     can_castle(int *row_1, int *col_1, int *row_2, int *col_2);
+void    perform_castling(int *row_1, int *col_1, int *row_2, int *col_2);
+int     is_in_check(int king_row, int king_col);
+void    swap_castle(int *king_row, int *king_col, int *rook_row, int *rook_col) ;
 
 // pieces
 void    is_pawn_move(int *row_1, int *col_1, int *row_2, int *col_2);
@@ -50,5 +52,6 @@ int     is_valid_rook_move(int row_1, int col_1, int row_2, int col_2);
 int     is_clear_path_horizontally(int row, int col_1, int col_2);
 int     is_clear_path_vertically(int col, int row_1, int row_2);
 int     is_valid_bishop_move(int row_1, int col_1, int row_2, int col_2);
+char    find_king(void);
 
 #endif
