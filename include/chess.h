@@ -20,6 +20,14 @@
 extern char board[BOARD_SIZE][BOARD_SIZE];
 extern int has_moved[8][8];
 
+
+typedef struct  s_piece
+{
+    char    piece;
+    int     row;
+    int     col;
+}               t_piece;
+
 void    print_board(void);
 void    parse_input(char *input, int *row_1, int *col_1, int *row_2, int *col_2);
 char	**ft_split(char const *s, char c);
