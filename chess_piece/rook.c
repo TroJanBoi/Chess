@@ -76,4 +76,3 @@ void is_rook_move(int *row_1, int *col_1, int *row_2, int *col_2)
     
     capturing(row_1, col_1, row_2, col_2);
 }
-__attribute_used__
